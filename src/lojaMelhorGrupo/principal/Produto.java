@@ -81,9 +81,6 @@ public class Produto implements Geral{
 
     }
 
-    public static Produto faz(){
-
-    }
 
 
 
