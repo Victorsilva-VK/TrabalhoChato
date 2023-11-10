@@ -1,7 +1,10 @@
 package lojaMelhorGrupo.logistica;
 
+import java.util.Scanner;
+
 public interface Geral {
 
-    public String cadastrar();
+
+    void cadastrar();
 
 }

@@ -1,5 +1,8 @@
 package lojaMelhorGrupo.principal;
 
+import com.sun.tools.javac.Main;
+import lojaMelhorGrupo.console.Lobby;
+import lojaMelhorGrupo.logistica.Geral;
 import lojaMelhorGrupo.principal.Produto;
 
 import java.util.Scanner;
@@ -92,7 +95,7 @@ public class Introducao {
 
     public void voltarvoltar(){
         if (voltar == 5) {
-            executarMenu();
+            introduz();
         }
     }
 
@@ -100,6 +103,7 @@ public class Introducao {
         executarMenu();
         executarLoop();
     }
+
     public void executarLoop(){
         while (quebraLoop != 5) {
 
@@ -109,22 +113,21 @@ public class Introducao {
 
                 case 1:
                     System.out.println(menuProduto);
-                    voltar = ler.nextInt();
+
+                    Produto faz = new Produto();
+                    faz.executarLoopProduto();
                     voltarvoltar();
                     break;
                 case 2:
                     System.out.println(menuEstoque);
-                    voltar = ler.nextInt();
                     voltarvoltar();
                     break;
                 case 3:
                     System.out.println(menuFornecedor);
-                    voltar = ler.nextInt();
                     voltarvoltar();
                     break;
                 case 4:
                     System.out.println(sobreNos);
-                    voltar = ler.nextInt();
                     voltarvoltar();
                     break;
                 case 5:
