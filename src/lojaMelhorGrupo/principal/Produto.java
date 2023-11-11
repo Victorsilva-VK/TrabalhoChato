@@ -2,6 +2,10 @@ package lojaMelhorGrupo.principal;
 
 import lojaMelhorGrupo.logistica.Geral;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Produto implements Geral{
@@ -10,25 +14,30 @@ public class Produto implements Geral{
     private String codigo;
     private String nomeProduto;
     private String descricao;
-    private String fornecedor;
-    private String dataCadastro;
-
+    //private Fornecedor fornecedor;
+    private String nomeFornecedor;
     private int quebraLoopProduto;
+    LocalDateTime dataCadastro = LocalDateTime.now();
+    DateTimeFormatter dataEstilosa = DateTimeFormatter.ofPattern("E, MMM dd yyyy");
+    private String dataFormatada = dataCadastro.format(dataEstilosa);
+
+    private List<Produto> produtos = new ArrayList<>();
+
+    private boolean continuarCadastro = true;
 
 
     // Area dos Contructors
 
-
     public Produto() {
     }
 
-    public Produto(String idProduto, String codigo, String nomeProduto, String descricao, String fornecedor, String dataCadastro) {
+    public Produto(String idProduto, String codigo, String nomeProduto, String descricao, String nomeFornecedor, String dataFormatada) {
         this.idProduto = idProduto;
         this.codigo = codigo;
         this.nomeProduto = nomeProduto;
         this.descricao = descricao;
-        this.fornecedor = fornecedor;
-        this.dataCadastro = dataCadastro;
+        this.nomeFornecedor = nomeFornecedor;
+        this.dataFormatada = dataFormatada;
     }
 
     // Area dos Gets and setters
@@ -66,95 +75,100 @@ public class Produto implements Geral{
         this.descricao = descricao;
     }
 
-    public String getFornecedor() {
-        return fornecedor;
+    public String getNomeFornecedor() {
+        return nomeFornecedor;
     }
 
-    public void setFornecedor(String fornecedor) {
-        this.fornecedor = fornecedor;
+    public void setNomeFornecedor(String nomeFornecedor) {
+        this.nomeFornecedor = nomeFornecedor;
     }
 
-    public String getDataCadastro() {
-        return dataCadastro;
+    public String getDataFormatada() {
+        return dataFormatada;
     }
 
-    public void setDataCadastro(String dataCadastro) {
-        this.dataCadastro = dataCadastro;
+    public void setDataFormatada(String dataFormatada) {
+        this.dataFormatada = dataFormatada;
     }
-
 
     // Area dos metodos
 
+    public String mostrar(){
+        String mensagem1 = ("""
+          \n Produto gerado!
+          \n
+           nome: %s.
+           codigo: %s.
+           id: %s.
+           descrição: %s.
+           fornecedor: %s.
+           data: %s.
+       """).formatted(nomeProduto,codigo,idProduto,descricao,nomeFornecedor,dataFormatada);
+
+        return mensagem1;
+    }
     @Override
     public void cadastrar() {
-        Scanner ler = new Scanner(System.in);
-        idProduto = validacao("Insira o Id do Produto(maximo: 6): ",7,true);
-        codigo = validacao("Insira o codigo(maximo: 5): ", 6, true);
-        nomeProduto = validacao("Insira o nome(maximo: 40): ", 40, false);
-        descricao = validacao("Insira a descrição(maximo: 60): ", 61, false);
-        fornecedor = validacao("Insira o nome do fornecedor(maximo: 20): ", 21, false);
-        dataCadastro = validacao("Insira a data(maximo: 8: ", 9, true);
 
-        Produto produto = new Produto(idProduto,codigo,nomeProduto,descricao,fornecedor,dataCadastro);
-        String m = ("""
-                   \n Produto gerado!
-                    \nnome: %s.
-                    codigo: %s.
-                    id: %s.
-                    descrição: %s.
-                    fornecedor: %s.
-                    data: %s.
-                """).formatted(nomeProduto,codigo,idProduto,descricao,fornecedor,dataCadastro);
 
-        System.out.println(m);
+            while (continuarCadastro){
+                Scanner faz = new Scanner(System.in);
+        System.out.println("Digite o id(6 números): ");
+        idProduto = faz.nextLine();
+        System.out.println("Digite o código(4 números: ");
+        codigo = faz.nextLine();
+        System.out.println("Digite o nome do produto: ");
+        nomeProduto = faz.nextLine();
+        System.out.println("Descrição do produto: ");
+        descricao = faz.nextLine();
+        System.out.println("Nome do Fornecedor: ");
+        nomeFornecedor = faz.nextLine();
+        mostrar();
+
+        Produto cria = new Produto(idProduto,codigo,nomeProduto,descricao,nomeFornecedor,dataFormatada);
+                System.out.println("Produt gerado com sucesso!");
+        produtos.add(cria);
+                System.out.println("\nDeseja criar outro protudo?(S/N)");
+                String resposta = faz.nextLine().toLowerCase();
+
+                if (!resposta.equals("s")) {
+                    continuarCadastro = false;
+                }
+                }
+            }
+
+    @Override
+    public void listar() {
+
+        // criar uma forma de lista grande e simplificada
+        System.out.println("Produtos registrados:");
+        for (Produto cria: produtos) {
+            System.out.println(mostrar());
+        }
     }
 
-    public String validacao(String mensagem, int tamanhoMaximo, boolean numeros){
-        Scanner ler = new Scanner(System.in);
-        String entrada;
-
-        do {
-            System.out.print(mensagem);
-            entrada = ler.nextLine();
-        } while (!tamanhoPermitido(entrada, tamanhoMaximo) || (numeros && !numeros(entrada)) || (!numeros && !letras(entrada)));
-
-        return entrada;
-    }
-    public boolean tamanhoPermitido(String string, int tamanhoMaximo) {
-        return string.length()<tamanhoMaximo;
-    }
-    public boolean letras(String string){
-        return string.matches("[a-zA-ZçÇáéíóúÁÉÍÓÚâêîôûÂÊÎÔÛäëïöüÄËÏÖÜ. ]+");
-    }
-
-    public boolean numeros(String string){
-        return string.matches("\\d +");
-    }
-
-    Scanner l = new Scanner(System.in);
     public void executarLoopProduto() {
         while (quebraLoopProduto!= 5) {
-
-            quebraLoopProduto = l.nextInt();
+            Scanner ler = new Scanner(System.in);
+            Introducao c = new Introducao();
+            quebraLoopProduto = ler.nextInt();
 
             switch (quebraLoopProduto){
 
                 case 1: cadastrar();
-                    System.out.println("\nDeseja adicionar mais um produto?");
+                    System.out.println(c.getMenuProduto());
                     break;
                 case 2:
                     System.out.println("buscar");
                     break;
                 case 3:
-                    System.out.println("Listar");
-                break;
+                    listar();
+                    break;
                 case 4:
                     System.out.println("deletar");
                     break;
-
                 case 5:
                     System.out.println("Voltando...");
-                    Introducao c = new Introducao();
                     c.executarMenu();
                     break;
                 default:
@@ -162,6 +176,5 @@ public class Produto implements Geral{
             }
         }
     }
-
 }
 

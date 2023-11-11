@@ -5,12 +5,10 @@ public class Estoque{
     private String armazem;
     private int numeroDaPrateleira;
 
+    private Produto produto;
+
 
     // Area dos Construtores
-
-    public Estoque(String armazem) {
-        this.armazem = armazem;
-    }
 
 
     // Area dos Gets and setters
