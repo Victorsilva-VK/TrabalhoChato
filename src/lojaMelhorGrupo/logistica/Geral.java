@@ -8,7 +8,7 @@ public interface Geral {
     void cadastrar();
     void listar();
 
-    //Optional<?> buscar(String nomeBuscado);
-   // void deletar();
+    void buscar();
+    void deletar();
 
 }
