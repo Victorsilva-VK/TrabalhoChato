@@ -2,7 +2,7 @@ package lojaMelhorGrupo.principal;
 
 public class Pessoa {
     private long id;
-   private String nome;
+   private String nomePessoal;
    private String cnpj;
    private String logradouro;
    private String bairro;
@@ -35,11 +35,11 @@ public class Pessoa {
     }
 
     public String getNome() {
-        return nome;
+        return nomePessoal;
     }
 
     public void setNome() {
-        this.nome = nome;
+        this.nomePessoal = nomePessoal;
     }
 
     public String getCnpj() {

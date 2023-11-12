@@ -1,10 +1,5 @@
 package lojaMelhorGrupo.principal;
 
-import com.sun.tools.javac.Main;
-import lojaMelhorGrupo.console.Lobby;
-import lojaMelhorGrupo.logistica.Geral;
-import lojaMelhorGrupo.principal.Produto;
-
 import java.util.Scanner;
 
 public class Introducao {
