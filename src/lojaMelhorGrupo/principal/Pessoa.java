@@ -1,7 +1,10 @@
 package lojaMelhorGrupo.principal;
 
-public class Pessoa {
-    private long id;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+public abstract class Pessoa {
+   private String id;
    private String nomePessoal;
    private String cnpj;
    private String logradouro;
@@ -13,32 +16,52 @@ public class Pessoa {
    private String rg;
    private String telefone;
    private String email;
-   private int dataCadastro;
-   private int dataNascimento;
+   private String dataNascimento;
+
+   // Configuração da data
+    LocalDateTime dataCadastroPessoa = LocalDateTime.now();
+    DateTimeFormatter dataEstilosa = DateTimeFormatter.ofPattern("E, MMM dd yyyy");
+    private String dataFormatada = dataCadastroPessoa.format(dataEstilosa);
+
+    // Area dos Construtores
 
     public Pessoa() {
         super();
     }
+    public Pessoa(String id, String nomePessoal, String cnpj, String logradouro, String bairro, String cidade, String estado, String cep, String cpf, String rg, String telefone, String email, String dataNascimento, String dataFormatada) {
+        this.id = id;
+        this.nomePessoal = nomePessoal;
+        this.cnpj = cnpj;
+        this.logradouro = logradouro;
+        this.bairro = bairro;
+        this.cidade = cidade;
+        this.estado = estado;
+        this.cep = cep;
+        this.cpf = cpf;
+        this.rg = rg;
+        this.telefone = telefone;
+        this.email = email;
+        this.dataNascimento = dataNascimento;
+        this.dataFormatada = dataFormatada;
+    }
 
-
-    // Area dos Construtores
-    
 
     // Area dos Gets and Sets
 
-    public long getId() {
+
+    public String getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public String getNome() {
+    public String getNomePessoal() {
         return nomePessoal;
     }
 
-    public void setNome() {
+    public void setNomePessoal(String nomePessoal) {
         this.nomePessoal = nomePessoal;
     }
 
@@ -122,19 +145,19 @@ public class Pessoa {
         this.email = email;
     }
 
-    public int getDataCadastro() {
-        return dataCadastro;
+    public String getDataFormatada() {
+        return dataFormatada;
     }
 
-    public void setDataCadastro(int dataCadastro) {
-        this.dataCadastro = dataCadastro;
+    public void setDataFormatada(String dataFormatada) {
+        this.dataFormatada = dataFormatada;
     }
 
-    public int getDataNascimento() {
+    public String getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(int dataNascimento) {
+    public void setDataNascimento(String dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 }

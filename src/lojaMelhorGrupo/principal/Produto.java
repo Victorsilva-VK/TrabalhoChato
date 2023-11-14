@@ -6,7 +6,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.Scanner;
 
     public class Produto implements Geral{
@@ -18,14 +17,11 @@ import java.util.Scanner;
         //private Fornecedor fornecedor;
         private String nomeFornecedor;
         private int quebraLoopProduto;
-        LocalDateTime dataCadastro = LocalDateTime.now();
+
+        // Configurações da Data
+        LocalDateTime dataCadastroProduto = LocalDateTime.now();
         DateTimeFormatter dataEstilosa = DateTimeFormatter.ofPattern("E, MMM dd yyyy");
-        private String dataFormatada = dataCadastro.format(dataEstilosa);
-
-        private List<Produto> produtos = new ArrayList<>();
-
-        private boolean continuarCadastro = true;
-
+        private String dataFormatada = dataCadastroProduto.format(dataEstilosa);
 
         // Area dos Contructors
 
@@ -93,7 +89,9 @@ import java.util.Scanner;
         }
 
         // Area dos metodos
+        private List<Produto> produtos = new ArrayList<>();
 
+        private boolean continuarCadastro = true;
         @Override
         public void cadastrar() {
             while (continuarCadastro){
