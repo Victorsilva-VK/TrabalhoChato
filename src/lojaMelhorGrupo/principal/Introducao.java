@@ -32,10 +32,10 @@ public class Introducao {
     private String menuEstoque = """
                 \n ***********
                 
-                1- Atualizar Estoque de produtos.
-                2- Adicionar Estoque de Produtos.
-                3- Remover Estoque de produtos.
-                4- Listar Produtos disponiveis.
+                1- Adicionar Estoque de Produtos.
+                2- Atualizar Estoque de produtos.
+                3- Listar Produtos disponiveis.
+                4- Remover Estoque de produtos.
                 5- Voltar.
                 \n ***********
                 """;
@@ -80,6 +80,22 @@ public class Introducao {
         return menuProduto;
     }
 
+    public String getMenuEstoque() {
+        return menuEstoque;
+    }
+
+    public void setMenuEstoque(String menuEstoque) {
+        this.menuEstoque = menuEstoque;
+    }
+
+    public String getMenuFornecedor() {
+        return menuFornecedor;
+    }
+
+    public void setMenuFornecedor(String menuFornecedor) {
+        this.menuFornecedor = menuFornecedor;
+    }
+
     // area dos metodos
 
     Scanner ler = new Scanner(System.in);
@@ -114,6 +130,8 @@ public class Introducao {
                     break;
                 case 2:
                     System.out.println(menuEstoque);
+                    Estoque vaiFazer = new Estoque();
+                    vaiFazer.executarLoopEstoque();
                     voltarvoltar();
                     break;
                 case 3:

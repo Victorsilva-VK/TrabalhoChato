@@ -7,7 +7,6 @@ public interface Geral {
 
     void cadastrar();
     void listar();
-
     void buscar();
     void deletar();
 

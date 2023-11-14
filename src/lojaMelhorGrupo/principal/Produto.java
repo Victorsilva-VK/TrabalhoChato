@@ -208,7 +208,6 @@ import java.util.Scanner;
             System.out.println("\nProduto com o ID '" + idProduto + "' não encontrado.");
         }
 
-
         public void executarLoopProduto() {
             while (quebraLoopProduto!= 5) {
                 Scanner ler = new Scanner(System.in);
