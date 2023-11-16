@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Scanner;
 
     public class Produto implements Geral{
-
         private String idProduto;
         private String codigo;
         private String nomeProduto;
@@ -17,6 +16,7 @@ import java.util.Scanner;
         //private Fornecedor fornecedor;
         private String nomeFornecedor;
         private int quebraLoopProduto;
+        private boolean continuarCadastro = true;
 
         // Configurações da Data
         LocalDateTime dataCadastroProduto = LocalDateTime.now();
@@ -36,6 +36,10 @@ import java.util.Scanner;
             this.nomeFornecedor = nomeFornecedor;
             this.dataFormatada = dataFormatada;
         }
+
+        // Area das listas
+
+        private static List<Produto> produtos = new ArrayList<>();
 
         // Area dos Gets and setters
 
@@ -88,13 +92,20 @@ import java.util.Scanner;
             this.dataFormatada = dataFormatada;
         }
 
-        // Area dos metodos
-        private List<Produto> produtos = new ArrayList<>();
+        public static List<Produto> getProdutos() {
+            return produtos;
+        }
 
-        private boolean continuarCadastro = true;
+        public static void setProdutos(List<Produto> produtos) {
+            Produto.produtos = produtos;
+        }
+
+        // Area dos metodos
+
         @Override
         public void cadastrar() {
-            while (continuarCadastro){
+
+            do {
                 Scanner faz = new Scanner(System.in);
                 System.out.println("Digite o id(6 números): ");
                 idProduto = faz.nextLine();
@@ -116,7 +127,7 @@ import java.util.Scanner;
                 if (resposta.equals("n")) {
                     continuarCadastro = false;
                 }
-            }
+            } while (continuarCadastro);
         }
 
         @Override

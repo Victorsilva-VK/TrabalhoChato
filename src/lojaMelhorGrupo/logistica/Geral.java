@@ -10,4 +10,5 @@ public interface Geral {
     void buscar();
     void deletar();
 
+
 }
